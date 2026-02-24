@@ -1,12 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 @import "tailwindcss";
+
+@plugin "@iconify/tailwind4" {
+  scale: 1.2;
+}
 
 @theme {
   /* Fonts */
+  --font-primary: "DM Sans", "sans-serif";
 
   /* Colors */
+  --color-primary-ultra-light: oklch(96.45% 0.02 350.54);
+  --color-primary-light: oklch(89.14% 0.066 352.83);
+  --color-primary: oklch(80.46% 0.126 355.15);
+  --color-primary-medium: oklch(68.67% 0.171 357.91);
+  --color-primary-dark: oklch(59.09% 0.18 0.04);
+
+  --color-secondary-ultra-light: oklch(96.85% 0.012 209.81);
+  --color-secondary-light: oklch(87.82% 0.045 206.8);
+  --color-secondary: oklch(80.41% 0.068 206.67);
+  --color-secondary-medium: oklch(63.48% 0.078 207.59);
+  --color-secondary-dark: oklch(53.89% 0.089 210.2);
+
+  --color-gray-light: oklch(97.91% 0 0);
+  --color-gray-medium: oklch(82.97% 0 0);
+  --color-gray-dark: oklch(49.26% 0 0);
+
+  --color-error: oklch(49.54% 0.195 28.33);
 }
 
 @layer base {
+  body {
+    font-family: var(--font-primary);
+  }
+
+  button {
+    cursor: pointer;
+    font-weight: 500;
+  }
 }
 
 @layer components {
