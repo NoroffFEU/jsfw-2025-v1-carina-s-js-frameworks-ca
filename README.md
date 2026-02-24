@@ -2,9 +2,23 @@
 
 This repository is under active development and the README is incomplete.
 
+## Goal
+
+Build a fully functional, responsive online shop using React or Next.js with TypeScript, demonstrating the ability to integrate APIs, manage state, apply software architecture principles, and justify framework choices in a real-world digital solution.
+
 ## Description
 
-The goal of this assignment is to build a fully functional, responsive online shop using React with TypeScript, demonstrating the ability to integrate APIs, manage state, apply software architecture principles, and justify framework choices in a real-world digital solution.
+Build a fully functional online shop using React and Next.js. The app must fetch products from a REST API, display them in a user-friendly layout, provide product detail pages, implement search and sorting behaviour, and include a complete shopping cart and checkout flow. You must also create a validated contact form and ensure the full site works well on desktop and mobile.
+
+The application allows users to:
+
+- Browse a list of products
+- View detailed information about each product
+- Search for products from the homepage
+- Add and remove items from a shopping cart
+- Adjust quantities and view total cost
+- Complete a checkout flow
+- Send a message through a validated contact form
 
 ## Tech Stack
 
@@ -12,13 +26,64 @@ The goal of this assignment is to build a fully functional, responsive online sh
 - TypeScript
 - Tailwind CSS
 - Vite
+- React Router
 
 ## Installing
 
+1. Clone the repo:
+
+```bash
+git clone https://github.com/NoroffFEU/jsfw-2025-v1-carina-s-js-frameworks-ca.git
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Start the local dev server:
+
+```bash
+npm run dev
+```
+
+4. Build the project for production:
+
+```bash
+npm run build
+```
+
 ## Running Tests
+
+Test instructions coming soon
 
 ## Linting and Formatting
 
+Run Prettier:
+
+```bash
+npm run format
+```
+
+Run ESLint:
+
+```bash
+npm run lint
+```
+
 ## Pre-Commit Hooks with Husky
 
+Husky is configured to automatically check linting and formatting before each commit:
+
+```bash
+npm run prepare
+```
+
 ## Deployment
+
+This site is deployed using Netlify, link coming soon.
+
+## Contact
+
+Contact information will be added at a later stage.
