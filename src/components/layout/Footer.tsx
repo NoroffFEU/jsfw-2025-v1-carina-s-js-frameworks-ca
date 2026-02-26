@@ -1,4 +1,3 @@
-import React from "react";
 import logoWhiteSmall from "../../assets/images/logos/meerkat-logo-white-300.png";
 import logoWhiteLarge from "../../assets/images/logos/meerkat-logo-white-600.png";
 
