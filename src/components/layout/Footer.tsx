@@ -3,10 +3,9 @@ import logoWhiteLarge from "../../assets/images/logos/meerkat-logo-white-600.png
 
 const Footer = () => {
   return (
-    <footer className="bg-secondary-dark px-4 py-8 sm:px-12">
-      <div className="flex flex-col gap-4 text-white">
+    <footer className="bg-secondary-dark bottom-0 mb-0 w-full px-4 py-8 sm:px-12 xl:px-0">
+      <div className="mx-auto flex max-w-7xl flex-col justify-center gap-4 text-white">
         <div>
-          {" "}
           <img
             src={logoWhiteLarge}
             srcSet={`${logoWhiteSmall} 300w, ${logoWhiteLarge} 600w`}
