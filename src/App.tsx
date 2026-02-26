@@ -1,12 +1,18 @@
+import { BrowserRouter as Router } from "react-router-dom";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+
 function App() {
   return (
-    <>
-      <h1 className="text-primary-dark">JavaScript Frameworks CA</h1>
-      <p className="font-light">This is a test</p>
-      <p className="text-secondary-dark">
-        <span className="iconify-[material-symbols--home-outline]"></span>
-      </p>
-    </>
+    <Router>
+      <Header />
+      <main>
+        <div>
+          <p>Main content to be added later</p>
+        </div>
+      </main>
+      <Footer />
+    </Router>
   );
 }
 
