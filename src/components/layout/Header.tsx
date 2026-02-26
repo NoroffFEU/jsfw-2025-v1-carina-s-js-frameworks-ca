@@ -11,31 +11,34 @@ const Header = () => {
   const [isFavouritesOpen, setIsFavouritesOpen] = useState(false);
 
   return (
-    <header className="justify-between bg-white p-4 sm:px-12">
-      <div className="flex"></div>
-      <img
-        src={logoBlackLarge}
-        srcSet={`${logoBlackSmall} 300w, ${logoBlackLarge} 600w`}
-        sizes="(max-width: 768px) 300px, 600px"
-        alt="meerkat logo"
-      />
-      <div className="flex items-center gap-2 sm:gap-4">
-        <nav>
-          {" "}
-          <a
-            href="#"
-            className="hover:bg-secondary-ultra-light rounded-sm bg-white p-2 font-medium transition duration-300 ease-in-out hover:font-semibold"
-          >
-            Contact
-          </a>
-        </nav>
-        <CartButton onClick={() => setIsCartOpen(true)} />
-        {isCartOpen && <CartModal onClose={() => setIsCartOpen(false)} />}
+    <header className="bg-white p-4 sm:px-12">
+      <div className="flex items-center justify-between">
+        <a href="#">
+          <img
+            src={logoBlackLarge}
+            srcSet={`${logoBlackSmall} 300w, ${logoBlackLarge} 600w`}
+            sizes="(max-width: 767px) 85px, (min-width: 768px) 142px"
+            alt="meerkat logo"
+          />
+        </a>
+        <div className="flex items-center">
+          <nav>
+            {" "}
+            <a
+              href="#"
+              className="sm:hover:bg-secondary-ultra-light rounded-sm bg-white p-2 font-medium transition duration-300 ease-in-out"
+            >
+              Contact
+            </a>
+          </nav>
+          <CartButton onClick={() => setIsCartOpen(true)} />
+          {isCartOpen && <CartModal onClose={() => setIsCartOpen(false)} />}
 
-        <FavouriteButton onClick={() => setIsFavouritesOpen(true)} />
-        {isFavouritesOpen && (
-          <FavouritesModal onClose={() => setIsFavouritesOpen(false)} />
-        )}
+          <FavouriteButton onClick={() => setIsFavouritesOpen(true)} />
+          {isFavouritesOpen && (
+            <FavouritesModal onClose={() => setIsFavouritesOpen(false)} />
+          )}
+        </div>
       </div>
     </header>
   );

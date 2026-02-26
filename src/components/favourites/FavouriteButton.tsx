@@ -6,9 +6,9 @@ const FavouriteButton = ({ onClick }: FavouriteButtonProps) => {
   return (
     <button
       onClick={onClick}
-      className="hover:bg-secondary-ultra-light flex size-12 items-center justify-center rounded-full bg-white font-medium transition duration-300 ease-in-out hover:font-semibold"
+      className="sm:hover:bg-secondary-ultra-light flex size-8 items-center justify-center rounded-full bg-white text-lg font-medium transition duration-300 ease-in-out sm:size-12"
     >
-      <span className="icon-[material-symbols--favorite-outline]"></span>
+      <span className="iconify-[material-symbols--favorite-outline]"></span>
     </button>
   );
 };
