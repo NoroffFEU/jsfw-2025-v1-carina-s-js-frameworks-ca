@@ -2,7 +2,7 @@ type searchResultsProps = {
   onClose: () => void;
 };
 
-const searchResultsModal = ({ onClose }: searchResultsProps) => {
+const SearchResultsModal = ({ onClose }: searchResultsProps) => {
   return (
     <dialog open className="rounded-sm p-4 shadow-sm">
       <p>These are search results</p>
@@ -11,4 +11,4 @@ const searchResultsModal = ({ onClose }: searchResultsProps) => {
   );
 };
 
-export default searchResultsModal;
+export default SearchResultsModal;
