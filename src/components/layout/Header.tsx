@@ -5,13 +5,16 @@ import CartButton from "../cart/CartButton";
 import FavouriteButton from "../favourites/FavouriteButton";
 import CartModal from "../cart/CartModal";
 import FavouritesModal from "../favourites/FavouritesModal";
+import SearchBar from "../search/SearchBar";
+import SearchResultsModal from "../search/SearchResults";
 
 const Header = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isFavouritesOpen, setIsFavouritesOpen] = useState(false);
+  const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(false);
 
   return (
-    <header className="bg-white p-4 sm:px-12">
+    <header className="sticky top-0 z-50 mx-auto mt-0 flex w-full max-w-7xl flex-col justify-center gap-2 bg-white p-4 sm:px-12 xl:px-0">
       <div className="flex items-center justify-between">
         <a href="#">
           <img
@@ -21,9 +24,14 @@ const Header = () => {
             alt="meerkat logo"
           />
         </a>
+        <div className="hidden flex-1 sm:flex">
+          <SearchBar onClick={() => setIsSearchResultsOpen(true)} />
+          {isSearchResultsOpen && (
+            <SearchResultsModal onClose={() => setIsSearchResultsOpen(false)} />
+          )}
+        </div>
         <div className="flex items-center">
           <nav>
-            {" "}
             <a
               href="#"
               className="sm:hover:bg-secondary-ultra-light rounded-sm bg-white p-2 font-medium transition duration-300 ease-in-out"
@@ -31,14 +39,22 @@ const Header = () => {
               Contact
             </a>
           </nav>
-          <CartButton onClick={() => setIsCartOpen(true)} />
-          {isCartOpen && <CartModal onClose={() => setIsCartOpen(false)} />}
+          <div className="flex items-center">
+            <CartButton onClick={() => setIsCartOpen(true)} />
+            {isCartOpen && <CartModal onClose={() => setIsCartOpen(false)} />}
 
-          <FavouriteButton onClick={() => setIsFavouritesOpen(true)} />
-          {isFavouritesOpen && (
-            <FavouritesModal onClose={() => setIsFavouritesOpen(false)} />
-          )}
+            <FavouriteButton onClick={() => setIsFavouritesOpen(true)} />
+            {isFavouritesOpen && (
+              <FavouritesModal onClose={() => setIsFavouritesOpen(false)} />
+            )}
+          </div>
         </div>
+      </div>
+      <div className="sm:hidden">
+        <SearchBar onClick={() => setIsSearchResultsOpen(true)} />
+        {isSearchResultsOpen && (
+          <SearchResultsModal onClose={() => setIsSearchResultsOpen(false)} />
+        )}
       </div>
     </header>
   );
