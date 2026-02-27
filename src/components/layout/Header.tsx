@@ -16,12 +16,12 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 mx-auto mt-0 flex w-full max-w-7xl flex-col justify-center gap-2 bg-white p-4 sm:px-12 xl:px-0">
       <div className="flex items-center justify-between">
-        <a href="#">
+        <a href="/" aria-label="Home">
           <img
             src={logoBlackLarge}
             srcSet={`${logoBlackSmall} 300w, ${logoBlackLarge} 600w`}
             sizes="(max-width: 767px) 85px, (min-width: 768px) 142px"
-            alt="meerkat logo"
+            alt="meerkat"
           />
         </a>
         <div className="hidden flex-1 sm:flex">
@@ -33,7 +33,7 @@ const Header = () => {
         <div className="flex items-center">
           <nav>
             <a
-              href="#"
+              href="/contact"
               className="sm:hover:bg-secondary-ultra-light rounded-sm bg-white p-2 font-medium transition duration-300 ease-in-out"
             >
               Contact
