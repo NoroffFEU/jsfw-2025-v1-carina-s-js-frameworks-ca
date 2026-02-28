@@ -31,13 +31,12 @@
 }
 
 @layer base {
-  body {
-    font-family: var(--font-primary);
+  html {
+    @apply font-primary scroll-smooth;
   }
 
   button {
-    cursor: pointer;
-    font-weight: 500;
+    @apply w-full cursor-pointer font-medium sm:w-fit;
   }
 }
 
