@@ -12,6 +12,7 @@ const Hero = () => {
           className="absolute inset-0 h-full w-full object-cover sm:rounded"
         />
       </picture>
+      <div className="absolute inset-0 bg-linear-to-r from-black/20 to-transparent" />
       <div className="relative flex h-full w-[50%] flex-col justify-center gap-4 px-4 text-white md:px-12">
         <div>
           <p className="text-xl font-light uppercase md:text-3xl">New Season</p>
