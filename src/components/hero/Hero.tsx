@@ -25,7 +25,7 @@ const Hero = () => {
         </p>
         <a
           href="#products-section"
-          className="group flex items-center gap-2 text-lg font-semibold transition duration-300 ease-in-out hover:font-bold md:text-2xl"
+          className="group flex items-center gap-2 text-lg font-semibold transition duration-500 ease-in-out hover:font-bold md:text-2xl"
         >
           Shop Now
           <span className="iconify-[material-symbols--arrow-right-alt] transition-transform duration-500 ease-in-out group-hover:rotate-90"></span>
