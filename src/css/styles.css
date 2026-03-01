@@ -36,13 +36,17 @@
   }
 
   button {
-    @apply w-full cursor-pointer font-medium sm:w-fit;
+    @apply cursor-pointer;
   }
 }
 
 @layer components {
-  .btn-link {
+  .btn-primary {
     @apply bg-secondary-light hover:bg-secondary w-full rounded-sm px-5 py-3 text-center text-lg font-medium transition duration-500 ease-in-out sm:w-fit;
+  }
+
+  .input-contact {
+    @apply border-gray-medium rounded-sm border px-4 py-2;
   }
 }
 

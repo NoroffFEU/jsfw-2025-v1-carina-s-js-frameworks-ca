@@ -25,7 +25,7 @@ function SuccessPage() {
             with your order details has been sent to you.
           </p>
         </div>
-        <a href="/" className="btn-link">
+        <a href="/" className="btn-primary">
           Back to products
         </a>
       </div>
