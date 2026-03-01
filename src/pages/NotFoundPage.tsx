@@ -25,12 +25,6 @@ function NotFoundPage() {
       </div>
       <a
         href="/"
-        className="bg-secondary-light hover:bg-secondary w-full rounded-sm px-5 py-3 text-center text-lg font-medium sm:w-fit"
-      >
-        Back to products
-      </a>
-      <a
-        href="/"
         className="bg-secondary-light hover:bg-secondary w-full rounded-sm px-5 py-3 text-center text-lg font-medium transition duration-500 ease-in-out sm:w-fit"
       >
         Back to products
