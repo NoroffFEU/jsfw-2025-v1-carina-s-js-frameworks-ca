@@ -34,7 +34,7 @@ const Header = () => {
           <nav>
             <a
               href="/contact"
-              className="sm:hover:bg-secondary-ultra-light rounded-sm bg-white p-2 font-medium transition duration-300 ease-in-out"
+              className="sm:hover:bg-secondary-ultra-light rounded-sm bg-white p-2 text-sm font-medium transition duration-300 ease-in-out sm:text-base"
             >
               Contact
             </a>
