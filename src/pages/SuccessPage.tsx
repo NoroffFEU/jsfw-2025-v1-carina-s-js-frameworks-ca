@@ -13,7 +13,7 @@ function SuccessPage() {
 
   return (
     <main className="mx-auto flex w-full max-w-7xl grow flex-col items-center justify-center px-4 sm:px-12 xl:px-0">
-      <div className="flex flex-col items-center justify-center gap-8 p-4 sm:w-145 sm:p-8">
+      <section className="flex flex-col items-center gap-8 sm:w-145 sm:p-8">
         <div className="flex flex-col items-center gap-4">
           <img
             className="w-75 sm:w-100"
@@ -28,7 +28,7 @@ function SuccessPage() {
         <a href="/" className="btn-primary">
           Back to products
         </a>
-      </div>
+      </section>
     </main>
   );
 }
