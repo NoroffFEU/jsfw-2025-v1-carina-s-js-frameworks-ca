@@ -10,8 +10,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, type ContactFormValues } from "./contact.schema";
 import showSuccessToast from "../common/Toast";
+import { useState } from "react";
 
 const ContactForm = () => {
+  const [key, setKey] = useState(0);
+
   const {
     register,
     handleSubmit,
@@ -34,13 +37,14 @@ const ContactForm = () => {
 
     showSuccessToast("Message sent successfully!");
     reset();
+    setKey((prev) => prev + 1);
   };
 
   const inputErrorClass = (error?: unknown) =>
     error ? "border-error border-2 focus:ring-error" : "";
 
   return (
-    <form id="contact-form" onSubmit={handleSubmit(onSubmit)}>
+    <form id="contact-form" key={key} onSubmit={handleSubmit(onSubmit)}>
       <Fieldset
         id="contact-fieldset"
         className={`flex flex-col gap-2 ${isSubmitting ? "opacity-70" : ""}`}
