@@ -12,24 +12,22 @@ function SuccessPage() {
   }, []);
 
   return (
-    <main className="mx-auto flex w-full max-w-7xl grow flex-col items-center justify-center px-4 sm:px-12 xl:px-0">
-      <section className="flex flex-col items-center gap-8 sm:w-145 sm:p-8">
-        <div className="flex flex-col items-center gap-4">
-          <img
-            className="w-75 sm:w-100"
-            src={ThankYouImage}
-            alt="Illustration: Thank you for your order."
-          />
-          <p className="text-center text-lg font-light">
-            Your purchase has been successfully placed. A confirmation email
-            with your order details has been sent to you.
-          </p>
-        </div>
-        <a href="/" className="btn-primary">
-          Back to products
-        </a>
-      </section>
-    </main>
+    <section className="flex flex-col items-center gap-8 px-4 sm:w-145 sm:p-8">
+      <div className="flex flex-col items-center gap-4">
+        <img
+          className="w-75 sm:w-100"
+          src={ThankYouImage}
+          alt="Illustration: Thank you for your order."
+        />
+        <p className="text-center text-lg font-light">
+          Your purchase has been successfully placed. A confirmation email with
+          your order details has been sent to you.
+        </p>
+      </div>
+      <a href="/" className="btn-primary">
+        Back to products
+      </a>
+    </section>
   );
 }
 

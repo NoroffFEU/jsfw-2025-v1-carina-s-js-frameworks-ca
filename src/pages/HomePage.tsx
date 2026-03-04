@@ -17,10 +17,8 @@ function HomePage() {
 
   return (
     <>
-      <main className="mx-auto flex w-full max-w-7xl grow flex-col justify-center sm:px-12 xl:px-0">
-        <Hero />
-        <ProductGrid />
-      </main>
+      <Hero />
+      <ProductGrid />
     </>
   );
 }
