@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Hero from "../components/hero/Hero";
+import ProductGrid from "../components/product/ProductGrid";
 
 function HomePage() {
   useEffect(() => {
@@ -18,6 +19,7 @@ function HomePage() {
     <>
       <main className="mx-auto flex w-full max-w-7xl grow flex-col justify-center sm:px-12 xl:px-0">
         <Hero />
+        <ProductGrid />
       </main>
     </>
   );
