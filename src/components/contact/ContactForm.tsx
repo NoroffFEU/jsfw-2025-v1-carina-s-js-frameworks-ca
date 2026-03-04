@@ -123,10 +123,10 @@ const ContactForm = () => {
               {isSubmitting ? (
                 <>
                   <Spinner />
-                  Sending...
+                  Sending message...
                 </>
               ) : (
-                "Send"
+                "Send message"
               )}
             </button>
           </Field>
