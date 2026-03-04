@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, type ContactFormValues } from "./contact.schema";
 import showSuccessToast from "../common/Toast";
 import { useState } from "react";
+import Spinner from "../common/LoadingSpinner";
 
 const ContactForm = () => {
   const [key, setKey] = useState(0);
@@ -113,13 +114,20 @@ const ContactForm = () => {
           </Field>
           <Field>
             <button
-              className={`btn-primary mt-4 ${
+              className={`btn-primary mt-4 flex items-center justify-center ${
                 !isValid || isSubmitting ? "cursor-not-allowed opacity-50" : ""
               }`}
               type="submit"
               disabled={!isValid || isSubmitting}
             >
-              {isSubmitting ? "Submitting..." : "Submit"}
+              {isSubmitting ? (
+                <>
+                  <Spinner />
+                  Sending...
+                </>
+              ) : (
+                "Send"
+              )}
             </button>
           </Field>
         </div>
