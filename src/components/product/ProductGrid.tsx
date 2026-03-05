@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import { useProducts } from "../../hooks/useProducts";
 import Sort from "../common/Sort";
@@ -7,6 +7,7 @@ import Pagination from "../common/Pagination";
 
 const ProductGrid = () => {
   const [page, setPage] = useState(1);
+  const gridRef = useRef<HTMLDivElement | null>(null);
   const { sort, sortOrder, handleSortChange } = useProductFilters();
   const { data, isLoading, isError, error } = useProducts(
     page,
@@ -14,6 +15,12 @@ const ProductGrid = () => {
     sort,
     sortOrder,
   );
+
+  useEffect(() => {
+    if (gridRef.current) {
+      gridRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [page]);
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -35,7 +42,10 @@ const ProductGrid = () => {
           }}
         />
       </div>
-      <div className="grid gap-12 py-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div
+        className="grid gap-12 py-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        ref={gridRef}
+      >
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
