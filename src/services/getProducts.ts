@@ -7,7 +7,7 @@ import {
 
 export async function getAllProducts(
   page: number = 1,
-  limit: number = 12,
+  limit: number = 16,
   sort?: string,
   sortOrder?: "asc" | "desc",
 ): Promise<PaginatedResponse<Product>> {
