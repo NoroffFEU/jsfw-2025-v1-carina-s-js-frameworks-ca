@@ -12,7 +12,7 @@ const Sort = ({ onSortChange }: SortProps) => {
         aria-label="Sort Products"
         defaultValue=""
         onChange={(e) => onSortChange(e.target.value)}
-        className="rounded-sm py-2 font-semibold"
+        className="cursor-pointer rounded-sm py-2 font-semibold"
       >
         <option value="">Sort by Newest</option>
         <option value="price-desc">Price: High to Low</option>
