@@ -1,8 +1,17 @@
 import ProductCard from "./ProductCard";
 import { useProducts } from "../../hooks/useProducts";
+import Sort from "../common/Sort";
+import { useProductFilters } from "../../hooks/useProductFilters";
 
 const ProductGrid = () => {
-  const { data, isLoading, isError, error } = useProducts();
+  const { sort, sortOrder, handleSortChange } = useProductFilters();
+
+  const { data, isLoading, isError, error } = useProducts(
+    1,
+    12,
+    sort,
+    sortOrder,
+  );
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -11,13 +20,10 @@ const ProductGrid = () => {
   return (
     <section className="px-4 py-8 sm:px-0" id="products-section">
       <div>
-        <h2 className="text-3xl font-semibold">Our Products</h2>
+        <h2 className="text-3xl font-semibold sm:text-4xl">Our Products</h2>
       </div>
-      <div className="flex justify-end">
-        <div className="flex items-center py-4">
-          <p>Sort component coming soon...</p>
-          <span className="iconify-[material-symbols--mobiledata-arrows]"></span>
-        </div>
+      <div className="mt-2 flex justify-start sm:justify-end">
+        <Sort onSortChange={handleSortChange} />
       </div>
       <div className="grid gap-12 py-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {data?.data.map((product) => (
