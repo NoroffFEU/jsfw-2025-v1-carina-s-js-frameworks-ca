@@ -30,7 +30,7 @@ const ProductGrid = () => {
   const totalPages = data?.meta?.pageCount ?? 1;
 
   return (
-    <section className="px-4 py-8 sm:px-0" id="products-section">
+    <section className="px-4 py-8 sm:px-0" id="products-section" ref={gridRef}>
       <div>
         <h2 className="text-3xl font-semibold sm:text-4xl">Our Products</h2>
       </div>
@@ -42,10 +42,7 @@ const ProductGrid = () => {
           }}
         />
       </div>
-      <div
-        className="grid gap-12 py-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-        ref={gridRef}
-      >
+      <div className="grid gap-12 py-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
