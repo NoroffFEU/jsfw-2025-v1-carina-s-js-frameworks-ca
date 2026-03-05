@@ -8,10 +8,18 @@ import {
 export async function getAllProducts(
   page: number = 1,
   limit: number = 12,
+  sort?: string,
+  sortOrder?: "asc" | "desc",
 ): Promise<PaginatedResponse<Product>> {
-  return get<PaginatedResponse<Product>>(
-    `/online-shop?page=${page}&limit=${limit}`,
-  );
+  const params = new URLSearchParams({
+    page: String(page),
+    limit: String(limit),
+  });
+
+  if (sort) params.append("sort", sort);
+  if (sortOrder) params.append("sortOrder", sortOrder);
+
+  return get<PaginatedResponse<Product>>(`/online-shop?${params.toString()}`);
 }
 
 export async function getSingleProduct(
