@@ -5,13 +5,11 @@ import CartButton from "../cart/CartButton";
 import FavouriteButton from "../favourites/FavouriteButton";
 import CartModal from "../cart/CartModal";
 import FavouritesModal from "../favourites/FavouritesModal";
-import SearchBar from "../search/SearchBar";
-import SearchResultsModal from "../search/SearchResults";
+import { SearchBar } from "../search/SearchBar";
 
 const Header = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isFavouritesOpen, setIsFavouritesOpen] = useState(false);
-  const [isSearchResultsOpen, setIsSearchResultsOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 mx-auto mt-0 flex w-full max-w-7xl flex-col justify-center gap-2 bg-white p-4 sm:px-12 xl:px-0">
@@ -24,11 +22,9 @@ const Header = () => {
             alt="meerkat"
           />
         </a>
+
         <div className="hidden flex-1 sm:flex">
-          <SearchBar onClick={() => setIsSearchResultsOpen(true)} />
-          {isSearchResultsOpen && (
-            <SearchResultsModal onClose={() => setIsSearchResultsOpen(false)} />
-          )}
+          <SearchBar />
         </div>
         <div className="flex items-center">
           <nav>
@@ -50,11 +46,9 @@ const Header = () => {
           </div>
         </div>
       </div>
+
       <div className="sm:hidden">
-        <SearchBar onClick={() => setIsSearchResultsOpen(true)} />
-        {isSearchResultsOpen && (
-          <SearchResultsModal onClose={() => setIsSearchResultsOpen(false)} />
-        )}
+        <SearchBar />
       </div>
     </header>
   );
