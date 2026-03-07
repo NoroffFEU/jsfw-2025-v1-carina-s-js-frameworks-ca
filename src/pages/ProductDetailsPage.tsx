@@ -1,62 +1,117 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { getSingleProduct } from "../services/getProducts";
 import type { Product } from "../types/Product";
+import BreadCrumb from "../components/common/BreadCrumb";
+import Rating from "../components/product/Rating";
+import ProductReview from "../components/product/ProductReviews";
+import Tag from "../components/common/Tag";
+import DiscountBadge from "../components/product/DiscountBadge";
+import PrimaryButton from "../components/global buttons/PrimaryButton";
+import showSuccessToast from "../components/common/Toast";
 
 function ProductDetailsPage() {
   const { id } = useParams<{ id: string }>();
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!id) {
-      setError("Invalid product ID.");
-      setLoading(false);
-      return;
-    }
+  const { data, isLoading, isError, error } = useQuery<{ data: Product }>({
+    queryKey: ["product", id],
+    queryFn: () => getSingleProduct(id!),
+    enabled: !!id,
+  });
 
-    async function fetchProduct() {
-      try {
-        setLoading(true);
-        const response = await getSingleProduct(id!);
-        setProduct(response.data);
-      } catch (err) {
-        console.error(err);
-        setError("Failed to load product.");
-      } finally {
-        setLoading(false);
-      }
-    }
+  const product: Product | undefined = data?.data;
 
-    fetchProduct();
-  }, [id]);
-
-  useEffect(() => {
-    if (!product) return;
-
-    document.title = `${product.title} | Meerkat Shop`;
-
-    const meta = document.querySelector("meta[name='description']");
-    if (meta) {
-      meta.setAttribute("content", product.description);
-    }
-  }, [product]);
-
-  if (loading) return <p>Loading...</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Failed to load product.</p>;
   if (error) return <p>{error}</p>;
   if (!product) return <p>Product not found.</p>;
 
+  const hasDiscount = product.discountedPrice < product.price;
+  const numberOfRatings = product.reviews.length;
+
   return (
-    <main className="mx-auto flex w-full max-w-7xl grow flex-col justify-center bg-amber-100 px-4 sm:px-12 xl:px-0">
-      <h1>Product Details Page</h1>
-      <p>Temporary view</p>
-      <ol>
-        <li>{product.title}</li>
-        <li>{product.description}</li>
-        <li>{product.price}</li>
-      </ol>
-    </main>
+    <div className="flex-start flex w-full flex-col p-4 sm:p-0 md:pb-8">
+      <section>
+        <BreadCrumb product={product} />
+      </section>
+
+      <section className="flex flex-col py-4 md:flex-row md:gap-8">
+        <div className="relative">
+          <DiscountBadge product={product} />
+          <img
+            src={product.image.url}
+            alt={product.image.alt}
+            className="aspect-3/4 w-full max-w-145 rounded-sm object-cover"
+          />
+        </div>
+        <div className="flex max-w-145 flex-col gap-4 py-8 md:py-0">
+          <h1 className="text-3xl font-semibold md:text-4xl">
+            {product.title}
+          </h1>
+          <div className="flex gap-2">
+            <div>
+              <Rating rating={product.rating} />
+            </div>
+            <div className="flex gap-2">
+              <p className="font-semibold">{product.rating}</p>
+              <p className="text-gray-dark">
+                ({numberOfRatings}
+                {numberOfRatings === 1 ? " rating)" : " ratings)"}
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-1 sm:gap-2">
+            {hasDiscount ? (
+              <>
+                <p className="text-2xl font-semibold md:text-3xl">
+                  {product.discountedPrice} NOK
+                </p>
+                <div className="text-gray-dark flex flex-row gap-2 md:text-lg">
+                  <p>Former Price:</p>
+                  <s>{product.price} NOK</s>
+                </div>
+              </>
+            ) : (
+              <p className="text-2xl font-semibold md:text-3xl">
+                {product.price} NOK
+              </p>
+            )}
+          </div>
+          <p className="md:text-lg">{product.description}</p>
+          <div>
+            {product.tags.length === 0 ? (
+              <p>No tags</p>
+            ) : (
+              <div className="flex flex-wrap gap-4">
+                {product.tags.map((tag) => (
+                  <Tag key={tag} tag={tag} />
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="py-4">
+            <PrimaryButton
+              text="Add to cart"
+              onClick={() => showSuccessToast("Item added to cart")}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="flex flex-col gap-2 md:pt-8">
+        <h2 className="text-2xl font-semibold">Customer Reviews</h2>
+
+        <section className="flex flex-col gap-4 py-4">
+          {product.reviews.length === 0 ? (
+            <p>No reviews yet.</p>
+          ) : (
+            product.reviews.map((review) => (
+              <ProductReview key={review.id} review={review} />
+            ))
+          )}
+        </section>
+      </section>
+    </div>
   );
 }
 
