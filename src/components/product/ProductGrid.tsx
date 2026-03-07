@@ -42,7 +42,7 @@ const ProductGrid = () => {
           }}
         />
       </div>
-      <div className="grid gap-12 py-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 py-6 sm:gap-8 md:grid-cols-3 md:gap-10 lg:gap-12 xl:grid-cols-4">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
