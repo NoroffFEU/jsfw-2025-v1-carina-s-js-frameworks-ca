@@ -37,12 +37,15 @@ export function SearchBar() {
         navigate(`/product/${product.id}`);
       }}
     >
-      <ComboboxInput
-        aria-label="Search input"
-        className="bg-gray-light w-full rounded px-3 py-2 sm:mx-4"
-        placeholder="Search for products"
-        onChange={(e) => setQuery(e.target.value)}
-      />
+      <div className="bg-gray-light relative w-full rounded sm:mx-4">
+        <ComboboxInput
+          aria-label="Search input"
+          className="w-full px-10 py-2 sm:px-8"
+          placeholder="Search for products"
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <span className="iconify-[material-symbols--search] text-gray-dark absolute top-1/2 left-2 -translate-y-1/2 md:left-2"></span>
+      </div>
 
       <ComboboxOptions
         anchor="bottom"
