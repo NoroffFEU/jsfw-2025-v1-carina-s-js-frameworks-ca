@@ -41,7 +41,7 @@ function ProductDetailsPage() {
           <img
             src={product.image.url}
             alt={product.image.alt}
-            className="aspect-3/4 w-full max-w-145 rounded-sm object-cover"
+            className="aspect-4/3 w-full max-w-145 rounded-sm object-cover"
           />
         </div>
         <div className="flex max-w-145 flex-col gap-4 py-8 md:py-0">
