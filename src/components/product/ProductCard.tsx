@@ -1,7 +1,7 @@
 import type { Product } from "../../types/Product";
 import { Link } from "react-router-dom";
 import DiscountBadge from "./DiscountBadge";
-import ProductRating from "./ProductRating";
+import Rating from "./Rating";
 
 type Props = {
   product: Product;
@@ -27,7 +27,7 @@ const ProductCard = ({ product }: Props) => {
             <h3 className="font-semibold sm:text-lg">{product.title}</h3>
             <div className="flex flex-col flex-wrap md:flex-row md:gap-2">
               <div>
-                <ProductRating product={product} />
+                <Rating rating={product.rating} />
               </div>
               <div className="flex gap-2">
                 <p className="font-semibold">{product.rating}</p>
