@@ -31,7 +31,10 @@ const ProductCard = ({ product }: Props) => {
               </div>
               <div className="flex gap-2">
                 <p className="font-semibold">{product.rating}</p>
-                <p className="text-gray-dark">({numberOfRatings} ratings)</p>
+                <p className="text-gray-dark">
+                  ({numberOfRatings}
+                  {numberOfRatings === 1 ? " rating)" : " ratings)"}
+                </p>
               </div>
             </div>
           </div>
