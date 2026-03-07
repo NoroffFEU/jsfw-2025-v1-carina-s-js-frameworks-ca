@@ -4,9 +4,11 @@ import { useProducts } from "../../hooks/useProducts";
 import Sort from "../common/Sort";
 import { useProductFilters } from "../../hooks/useProductFilters";
 import Pagination from "../common/Pagination";
+import ErrorModal from "../common/ErrorModal";
 
 const ProductGrid = () => {
   const [page, setPage] = useState(1);
+  const [showError, setShowError] = useState(true);
   const gridRef = useRef<HTMLDivElement | null>(null);
   const { sort, sortOrder, handleSortChange } = useProductFilters();
   const { data, isLoading, isError, error } = useProducts(
@@ -22,9 +24,19 @@ const ProductGrid = () => {
     }
   }, [page]);
 
-  if (isLoading) return <p>Loading...</p>;
+  const errorMessage =
+    error instanceof Error ? error.message : "Failed to load products";
 
-  if (isError) return <p>{(error as Error).message}</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (isError && showError)
+    return (
+      <ErrorModal
+        isOpen={true}
+        message={errorMessage}
+        description="Failed to load products."
+        onClose={() => setShowError(false)}
+      />
+    );
 
   const products = data?.data ?? [];
   const totalPages = data?.meta?.pageCount ?? 1;
