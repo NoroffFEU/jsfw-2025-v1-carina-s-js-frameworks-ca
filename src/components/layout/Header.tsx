@@ -12,7 +12,7 @@ const Header = () => {
   const [isFavouritesOpen, setIsFavouritesOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 mx-auto mt-0 flex w-full max-w-7xl flex-col justify-center gap-2 bg-white p-4 sm:px-12 xl:px-0">
+    <header className="sticky top-0 z-50 mx-auto mt-0 flex w-full max-w-7xl flex-col justify-center gap-2 bg-white p-4 sm:px-12">
       <div className="flex items-center justify-between">
         <a href="/" aria-label="Home">
           <img
