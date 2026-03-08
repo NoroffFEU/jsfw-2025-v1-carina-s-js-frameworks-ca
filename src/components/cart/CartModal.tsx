@@ -63,7 +63,7 @@ function CartModal({ isOpen, onClose }: Props) {
             transition={{ duration: 0.35, ease: "easeInOut" }}
             className="fixed inset-0 flex w-full items-center justify-end overflow-y-auto"
           >
-            <DialogPanel className="min-h-full w-[90%] max-w-145 space-y-4 rounded-sm bg-white p-4 sm:p-8">
+            <DialogPanel className="min-h-full w-[90%] max-w-145 space-y-4 overflow-y-auto rounded-sm bg-white p-4 sm:p-8">
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <DialogTitle className="text-2xl font-bold">
@@ -101,10 +101,12 @@ function CartModal({ isOpen, onClose }: Props) {
                         <p>Free</p>
                       </div>
                     </div>
-                    <div className="flex justify-between">
-                      <p>You saved:</p>
-                      <p>{totalSavings.toFixed(2)} NOK</p>
-                    </div>
+                    {totalSavings > 0 && (
+                      <div className="flex justify-between">
+                        <p>You saved:</p>
+                        <p>{totalSavings.toFixed(2)} NOK</p>
+                      </div>
+                    )}
                   </div>
                   <div className="flex flex-col gap-8">
                     <div className="flex justify-between text-lg font-semibold md:text-2xl">
