@@ -16,8 +16,6 @@ type Props = {
 function CartModal({ isOpen, onClose }: Props) {
   const items = useCartStore((state) => state.items);
   const total = useCartStore((state) => state.getTotal());
-  //const removeItem = useCartStore((state) => state.removeItem);
-  //const updateQuantity = useCartStore((state) => state.updateQuantity);
 
   return (
     <AnimatePresence>
@@ -59,7 +57,11 @@ function CartModal({ isOpen, onClose }: Props) {
               </div>
               <div>
                 {items.map((item) => (
-                  <CartItem key={item.product.id} product={item.product} />
+                  <CartItem
+                    key={item.product.id}
+                    product={item.product}
+                    quantity={item.quantity}
+                  />
                 ))}
               </div>
               <div className="bg-secondary-ultra-light border-secondary text-gray-dark flex flex-col gap-4 rounded-sm border p-4 md:text-lg">

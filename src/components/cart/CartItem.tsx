@@ -2,12 +2,14 @@ import type { Product } from "../../types/Product";
 import { Link } from "react-router-dom";
 import DiscountBadge from "../product/DiscountBadge";
 import RemoveButton from "../product/RemoveButton";
+import QuantitySelector from "./QuantitySelector";
 
 type Props = {
   product: Product;
+  quantity: number;
 };
 
-const CartItem = ({ product }: Props) => {
+const CartItem = ({ product, quantity }: Props) => {
   const hasDiscount = product.discountedPrice < product.price;
 
   return (
@@ -21,6 +23,7 @@ const CartItem = ({ product }: Props) => {
             className="aspect-3/4 w-full rounded-sm object-cover"
           />
         </div>
+        <QuantitySelector productId={product.id} quantity={quantity} />
         <RemoveButton onClick={() => console.log("Item removed")} />
         <div className="grid-cols-auto grid gap-6 p-4">
           <div className="mt-auto flex flex-col gap-2">
