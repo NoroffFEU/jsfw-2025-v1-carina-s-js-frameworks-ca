@@ -1,4 +1,5 @@
 import useCartStore from "../../store/cartStore";
+import showSuccessToast from "../common/Toast";
 
 type Props = {
   productId: string;
@@ -12,6 +13,7 @@ const QuantitySelector = ({ productId, quantity }: Props) => {
   const handleDecrease = () => {
     if (quantity <= 1) {
       removeItem(productId);
+      showSuccessToast("Item removed from cart.");
     } else {
       updateQuantity(productId, quantity - 1);
     }
