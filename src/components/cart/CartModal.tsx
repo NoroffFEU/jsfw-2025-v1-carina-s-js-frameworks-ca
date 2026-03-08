@@ -11,7 +11,6 @@ import useCartStore from "../../store/cartStore";
 type Props = {
   isOpen: boolean;
   onClose: () => void;
-  id: string;
 };
 
 function CartModal({ isOpen, onClose }: Props) {
@@ -19,10 +18,6 @@ function CartModal({ isOpen, onClose }: Props) {
   const total = useCartStore((state) => state.getTotal());
   //const removeItem = useCartStore((state) => state.removeItem);
   //const updateQuantity = useCartStore((state) => state.updateQuantity);
-
-  if (items.length === 0) {
-    return <p>Cart is empty.</p>;
-  }
 
   return (
     <AnimatePresence>
