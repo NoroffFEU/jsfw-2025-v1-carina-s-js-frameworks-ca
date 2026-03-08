@@ -81,7 +81,7 @@ function CartModal({ isOpen, onClose }: Props) {
                   />
                 ))}
               </div>
-              <div className="bg-secondary-ultra-light border-secondary text-gray-dark flex flex-col gap-4 rounded-sm border p-4 md:text-lg">
+              <div className="bg-secondary-ultra-light border-secondary text-gray-dark my-8 flex flex-col gap-4 rounded-sm border p-4 md:text-lg">
                 <div className="flex items-center justify-between">
                   <p>Shipping:</p>
                   <div className="flex items-center gap-2">
