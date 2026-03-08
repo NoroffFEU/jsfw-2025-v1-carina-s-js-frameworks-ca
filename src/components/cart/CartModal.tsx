@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Dialog,
   DialogPanel,
@@ -7,6 +9,8 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import CartItem from "./CartItem";
 import useCartStore from "../../store/cartStore";
+import Spinner from "../common/LoadingSpinner";
+import showSuccessToast from "../common/Toast";
 
 type Props = {
   isOpen: boolean;
@@ -16,6 +20,19 @@ type Props = {
 function CartModal({ isOpen, onClose }: Props) {
   const items = useCartStore((state) => state.items);
   const total = useCartStore((state) => state.getTotal());
+  const navigate = useNavigate();
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const clearCart = useCartStore((state) => state.clearCart);
+  const handleCheckout = () => {
+    setIsCheckingOut(true);
+
+    setTimeout(() => {
+      clearCart();
+      showSuccessToast("Order has been placed.");
+      onClose();
+      navigate("/success");
+    }, 1500);
+  };
 
   return (
     <AnimatePresence>
@@ -82,8 +99,19 @@ function CartModal({ isOpen, onClose }: Props) {
                   <p>Total</p>
                   <p>{total}</p>
                 </div>
-                <button className="btn-primary" onClick={onClose}>
-                  One-Click Checkout
+                <button
+                  className="btn-primary flex items-center justify-center gap-2 disabled:pointer-events-none disabled:opacity-70"
+                  onClick={handleCheckout}
+                  disabled={isCheckingOut || items.length === 0}
+                >
+                  {isCheckingOut ? (
+                    <>
+                      <Spinner />
+                      Processing...
+                    </>
+                  ) : (
+                    "One-Click Checkout"
+                  )}
                 </button>
               </div>
             </DialogPanel>
