@@ -10,7 +10,7 @@ const showSuccessToast = (message: string) =>
     </div>,
     {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 1000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
