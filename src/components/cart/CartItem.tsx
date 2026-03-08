@@ -1,8 +1,9 @@
 import type { Product } from "../../types/Product";
 import { Link } from "react-router-dom";
 import DiscountBadge from "../product/DiscountBadge";
-import RemoveButton from "../product/RemoveButton";
+import RemoveButton from "../common/RemoveButton";
 import QuantitySelector from "./QuantitySelector";
+import useCartStore from "../../store/cartStore";
 
 type Props = {
   product: Product;
@@ -11,6 +12,7 @@ type Props = {
 
 const CartItem = ({ product, quantity }: Props) => {
   const hasDiscount = product.discountedPrice < product.price;
+  const removeItem = useCartStore((state) => state.removeItem);
 
   return (
     <article className="border-gray-light grid-cols-[minmax(0, 1fr)] grid cursor-pointer grid-rows-[max-content] rounded-sm border transition duration-300 ease-in-out sm:hover:scale-103 sm:hover:shadow-lg">
@@ -24,7 +26,7 @@ const CartItem = ({ product, quantity }: Props) => {
           />
         </div>
         <QuantitySelector productId={product.id} quantity={quantity} />
-        <RemoveButton onClick={() => console.log("Item removed")} />
+        <RemoveButton onClick={() => removeItem(product.id)} />
         <div className="grid-cols-auto grid gap-6 p-4">
           <div className="mt-auto flex flex-col gap-2">
             <h3 className="font-semibold sm:text-lg">{product.title}</h3>
