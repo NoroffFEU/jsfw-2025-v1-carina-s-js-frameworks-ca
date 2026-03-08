@@ -5,6 +5,7 @@ import Sort from "../common/Sort";
 import { useProductFilters } from "../../hooks/useProductFilters";
 import Pagination from "../common/Pagination";
 import ErrorModal from "../common/ErrorModal";
+import ProductCardSkeleton from "./ProductCardSkeleton";
 
 const ProductGrid = () => {
   const [page, setPage] = useState(1);
@@ -27,7 +28,6 @@ const ProductGrid = () => {
   const errorMessage =
     error instanceof Error ? error.message : "Failed to load products";
 
-  if (isLoading) return <p>Loading...</p>;
   if (isError && showError)
     return (
       <ErrorModal
@@ -55,9 +55,13 @@ const ProductGrid = () => {
         />
       </div>
       <div className="grid grid-cols-2 gap-4 py-6 sm:gap-8 md:grid-cols-3 md:gap-10 lg:gap-12 xl:grid-cols-4">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {isLoading
+          ? Array.from({ length: 6 }).map((_, index) => (
+              <ProductCardSkeleton key={index} />
+            ))
+          : products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
       </div>
       <Pagination
         page={page}
