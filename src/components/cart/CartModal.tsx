@@ -25,7 +25,6 @@ function CartModal({ isOpen, onClose }: Props) {
   const clearCart = useCartStore((state) => state.clearCart);
   const handleCheckout = () => {
     setIsCheckingOut(true);
-
     setTimeout(() => {
       clearCart();
       showSuccessToast("Order has been placed.");
@@ -33,6 +32,13 @@ function CartModal({ isOpen, onClose }: Props) {
       navigate("/success");
     }, 1500);
   };
+  const totalSavings = items.reduce((sum, item) => {
+    const discount = item.product.price - item.product.discountedPrice;
+    if (discount > 0) {
+      return sum + discount * item.quantity;
+    }
+    return sum;
+  }, 0);
 
   return (
     <AnimatePresence>
@@ -81,39 +87,47 @@ function CartModal({ isOpen, onClose }: Props) {
                   />
                 ))}
               </div>
-              <div className="bg-secondary-ultra-light border-secondary text-gray-dark my-8 flex flex-col gap-4 rounded-sm border p-4 md:text-lg">
-                <div className="flex items-center justify-between">
-                  <p>Shipping:</p>
-                  <div className="flex items-center gap-2">
-                    <span className="iconify-[material-symbols--check]"></span>
-                    <p>Free</p>
+              {items.length === 0 ? (
+                <p className="text-gray-dark my-8 text-center text-lg">
+                  Cart empty
+                </p>
+              ) : (
+                <>
+                  <div className="bg-secondary-ultra-light border-secondary text-gray-dark my-8 flex flex-col gap-4 rounded-sm border p-4 md:text-lg">
+                    <div className="flex items-center justify-between">
+                      <p>Shipping:</p>
+                      <div className="flex items-center gap-2">
+                        <span className="iconify-[material-symbols--check]"></span>
+                        <p>Free</p>
+                      </div>
+                    </div>
+                    <div className="flex justify-between">
+                      <p>You saved:</p>
+                      <p>{totalSavings.toFixed(2)} NOK</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex justify-between">
-                  <p>Amount:</p>
-                  <p>2 380 NOK</p>
-                </div>
-              </div>
-              <div className="flex flex-col gap-8">
-                <div className="flex justify-between text-lg font-semibold md:text-2xl">
-                  <p>Total</p>
-                  <p>{total}</p>
-                </div>
-                <button
-                  className="btn-primary flex items-center justify-center gap-2 disabled:pointer-events-none disabled:opacity-70"
-                  onClick={handleCheckout}
-                  disabled={isCheckingOut || items.length === 0}
-                >
-                  {isCheckingOut ? (
-                    <>
-                      <Spinner />
-                      Processing...
-                    </>
-                  ) : (
-                    "One-Click Checkout"
-                  )}
-                </button>
-              </div>
+                  <div className="flex flex-col gap-8">
+                    <div className="flex justify-between text-lg font-semibold md:text-2xl">
+                      <p>Total</p>
+                      <p>{total.toFixed(2)} NOK</p>
+                    </div>
+                    <button
+                      className="btn-primary flex items-center justify-center gap-2 disabled:pointer-events-none disabled:opacity-70"
+                      onClick={handleCheckout}
+                      disabled={isCheckingOut || items.length === 0}
+                    >
+                      {isCheckingOut ? (
+                        <>
+                          <Spinner />
+                          Processing...
+                        </>
+                      ) : (
+                        "One-Click Checkout"
+                      )}
+                    </button>
+                  </div>
+                </>
+              )}
             </DialogPanel>
           </motion.div>
         </Dialog>
