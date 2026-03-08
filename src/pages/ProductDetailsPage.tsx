@@ -9,6 +9,7 @@ import Tag from "../components/common/Tag";
 import DiscountBadge from "../components/product/DiscountBadge";
 import AddToCartButton from "../components/product/AddToCartButton";
 import ErrorModal from "../components/common/ErrorModal";
+import ProductDetailsSkeleton from "../components/product/ProductDetailsSkeleton";
 
 function ProductDetailsPage() {
   const { id } = useParams<{ id: string }>();
@@ -20,7 +21,6 @@ function ProductDetailsPage() {
   const errorMessage =
     error instanceof Error ? error.message : "Failed to load product";
 
-  if (isLoading) return <p>Loading...</p>;
   if (isError) {
     return (
       <ErrorModal
@@ -31,6 +31,11 @@ function ProductDetailsPage() {
       />
     );
   }
+
+  if (isLoading) {
+    return <ProductDetailsSkeleton />;
+  }
+
   if (!product) return <p>Product not found.</p>;
 
   const hasDiscount = product.discountedPrice < product.price;
