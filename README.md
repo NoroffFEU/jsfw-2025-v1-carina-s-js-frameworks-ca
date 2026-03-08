@@ -28,6 +28,25 @@ The application allows users to:
 - Vite
 - React Router
 
+## UI & UX Libraries
+
+- React Toastify – Displays toast notifications for user feedback
+- Headless UI – Provides fully accessible and customizable UI components
+- Framer Motion - Used for smooth animations and transitions
+
+## Form Handling
+
+- React Hook Form - Efficient form state management
+- Zod -Schema-based validation integrated with React Hook Form
+
+## State Management
+
+- Zusand - Lightweight state management used to manage the shopping cart state
+
+## Data Fetching
+
+- Tanstack Query - Handles server state, data fetching, caching, and loading/error states
+
 ## Installing
 
 1. Clone the repo:
@@ -54,10 +73,6 @@ npm run dev
 npm run build
 ```
 
-## Running Tests
-
-Test instructions coming soon
-
 ## Linting and Formatting
 
 Run Prettier:
@@ -82,7 +97,7 @@ npm run prepare
 
 ## Deployment
 
-This site is deployed using Netlify, link coming soon.
+This site is deployed using Netlify: https://js-fw-ca.netlify.app/
 
 ## Contact
 
