@@ -51,7 +51,7 @@ function FavouritesModal({ isOpen, onClose }: Props) {
                 <hr className="text-gray-medium" />
               </div>
               <div>
-                <p>This is a favourite item</p>
+                <p>Favourites coming soon...</p>
               </div>
             </DialogPanel>
           </motion.div>
