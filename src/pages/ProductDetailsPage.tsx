@@ -46,7 +46,7 @@ function ProductDetailsPage() {
 
           <section className="flex flex-col py-4 md:flex-row md:gap-8">
             <div className="relative">
-              <DiscountBadge product={product} />
+              <DiscountBadge size="large" product={product} />
               <img
                 src={product.image.url}
                 alt={product.image.alt}
