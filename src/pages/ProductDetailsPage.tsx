@@ -1,25 +1,19 @@
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { getSingleProduct } from "../services/getProducts";
+import { useProduct } from "../hooks/useProduct";
 import type { Product } from "../types/Product";
 import BreadCrumb from "../components/common/BreadCrumb";
 import Rating from "../components/product/Rating";
 import ProductReview from "../components/product/ProductReviews";
 import Tag from "../components/common/Tag";
 import DiscountBadge from "../components/product/DiscountBadge";
-import PrimaryButton from "../components/global buttons/PrimaryButton";
-import showSuccessToast from "../components/common/Toast";
+import AddToCartButton from "../components/product/AddToCartButton";
 import ErrorModal from "../components/common/ErrorModal";
 
 function ProductDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { data, isLoading, isError, error } = useQuery<{ data: Product }>({
-    queryKey: ["product", id],
-    queryFn: () => getSingleProduct(id!),
-    enabled: !!id,
-  });
+  const { data, isLoading, isError, error } = useProduct(id!);
 
   const product: Product | undefined = data?.data;
 
@@ -105,10 +99,7 @@ function ProductDetailsPage() {
                 )}
               </div>
               <div className="py-4">
-                <PrimaryButton
-                  text="Add to cart"
-                  onClick={() => showSuccessToast("Item added to cart")}
-                />
+                <AddToCartButton product={product} />
               </div>
             </div>
           </section>
