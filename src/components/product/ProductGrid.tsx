@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import ProductCard from "./ProductCard";
 import { useProducts } from "../../hooks/useProducts";
 import Sort from "../common/Sort";
@@ -18,12 +18,6 @@ const ProductGrid = () => {
     sort,
     sortOrder,
   );
-
-  useEffect(() => {
-    if (gridRef.current) {
-      gridRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [page]);
 
   const errorMessage =
     error instanceof Error ? error.message : "Failed to load products";
