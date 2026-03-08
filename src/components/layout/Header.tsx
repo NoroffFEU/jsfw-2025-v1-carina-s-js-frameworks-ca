@@ -37,12 +37,15 @@ const Header = () => {
           </nav>
           <div className="flex items-center">
             <CartButton onClick={() => setIsCartOpen(true)} />
-            {isCartOpen && <CartModal onClose={() => setIsCartOpen(false)} />}
-
+            <CartModal
+              isOpen={isCartOpen}
+              onClose={() => setIsCartOpen(false)}
+            />
             <FavouriteButton onClick={() => setIsFavouritesOpen(true)} />
-            {isFavouritesOpen && (
-              <FavouritesModal onClose={() => setIsFavouritesOpen(false)} />
-            )}
+            <FavouritesModal
+              isOpen={isFavouritesOpen}
+              onClose={() => setIsFavouritesOpen(false)}
+            />
           </div>
         </div>
       </div>
