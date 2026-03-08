@@ -15,7 +15,7 @@ const ProductCard = ({ product }: Props) => {
     <article className="border-gray-light grid-cols-[minmax(0, 1fr)] grid cursor-pointer grid-rows-[max-content] rounded-sm border transition duration-300 ease-in-out sm:hover:scale-103 sm:hover:shadow-lg">
       <Link to={`/product/${product.id}`}>
         <div className="relative">
-          <DiscountBadge product={product} />
+          <DiscountBadge size="medium" product={product} />
           <img
             src={product.image.url}
             alt={product.image.alt}
